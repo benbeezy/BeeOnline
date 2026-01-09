@@ -17,8 +17,6 @@ func _ready():
     load_theme(active_theme)
 
 func _ensure_default_dirs():
-    print("User theme directory:", OS.get_user_data_dir())
-
     var dir := DirAccess.open("user://")
     if dir == null:
         push_error("Unable to access user:// directory")
