@@ -1,0 +1,9 @@
+{
+	"name": "Default",
+	"author": "BeeOnline Team",
+	"version": "1.0.0",
+	"fallback": "",
+	"ui_scale": 1.0,
+	"sprite_filter": "nearest",
+	"notes": "Base theme"
+}

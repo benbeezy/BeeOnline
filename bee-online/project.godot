@@ -15,6 +15,14 @@ run/main_scene="uid://b6gucqryll2ci"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+AppConfig="*res://autoload/AppConfig.gd"
+ThemeManager="*res://autoload/ThemeManager.gd"
+InputBus="*res://autoload/InputBus.gd"
+Net="*res://autoload/Net.gd"
+SceneLoader="*res://autoload/SceneLoader.gd"
+
 [dotnet]
 
 project/assembly_name="BeeOnline"
