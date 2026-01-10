@@ -13,7 +13,9 @@ config_version=5
 config/name="BeeOnline"
 run/main_scene="uid://b6gucqryll2ci"
 config/features=PackedStringArray("4.5", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://dks4tpuyyxif8"
+config/macos_native_icon="res://art/application/icon.icns"
+config/windows_native_icon="res://art/application/icon.ico"
 
 [autoload]
 
@@ -31,3 +33,4 @@ project/assembly_name="BeeOnline"
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
