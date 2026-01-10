@@ -10,3 +10,5 @@ export_presets.cfg
 */.vscode/settings.json
 
 BUILDS/*.*
+
+.DS_Store
