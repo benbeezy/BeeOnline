@@ -80,21 +80,61 @@ func _is_image(file_name: String) -> bool:
     ]
 
 func _load_sprite(path: String):
-    var img := Image.new()
-    var err := img.load(path)
-
-    if err != OK:
-        push_warning("Failed to load image: " + path)
+    print("DEBUG: Attempting to load sprite from path: ", path)
+    
+    # Check if file exists before trying to load it
+    if not FileAccess.file_exists(path):
+        push_warning("Image file does not exist: " + path)
+        return
+    
+    print("DEBUG: File exists, attempting to load...")
+    
+    var texture: Texture2D
+    
+    # Use different loading methods based on path type
+    if path.begins_with("user://"):
+        # For user:// paths, we need to load the image manually and create a texture
+        var image = Image.new()
+        var error = image.load(path)
+        
+        if error != OK:
+            push_warning("Failed to load image from user directory: " + path + " (Error: " + str(error) + ")")
+            return
+        
+        var image_texture = ImageTexture.new()
+        image_texture.set_image(image)
+        texture = image_texture
+        print("DEBUG: Successfully loaded image from user directory")
+    else:
+        # For res:// paths, use the standard load function
+        texture = load(path) as Texture2D
+        print("DEBUG: Loaded using standard load() function")
+    
+    if texture == null:
+        push_warning("Failed to create texture from image: " + path)
         return
 
-    var tex := ImageTexture.create_from_image(img)
+    var tex := texture
 
     # Generate a clean key, ex:
-    # characters/monarch
-    var key := path.replace(THEMES_DIR + active_theme + "/", "")
+    # world/nature-paltformer-tileset-16x16
+    var key: String
+    
+    # Remove the theme base path to get relative path within theme
+    var builtin_base = BUILTIN_THEMES_DIR + active_theme + "/"
+    var user_base = THEMES_DIR + active_theme + "/"
+    
+    if path.begins_with(builtin_base):
+        key = path.replace(builtin_base, "")
+    elif path.begins_with(user_base):
+        key = path.replace(user_base, "")
+    else:
+        # Fallback - shouldn't happen normally
+        key = path.get_file()
+    
     key = key.get_basename()
-
     sprites[key] = tex
+    print("Loaded sprite with key: ", key)
 
 func _load_theme_metadata(theme_path: String) -> void:
     theme_meta.clear()

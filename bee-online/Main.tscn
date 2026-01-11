@@ -1,3 +1,13 @@
-[gd_scene format=3 uid="uid://b6gucqryll2ci"]
+[gd_scene load_steps=3 format=4 uid="uid://b6gucqryll2ci"]
 
-[node name="Instance" type="Node2D"]
+[ext_resource type="TileSet" uid="uid://hh1lmyncp0n1" path="res://themes/default/world/new_tile_set.tres" id="1_glv2v"]
+[ext_resource type="Script" path="res://core/theme/theme_world.gd" id="2_abc123"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="worldTiles" type="TileMapLayer" parent="."]
+script = ExtResource("2_abc123")
+tile_map_data = PackedByteArray("AAD6////AAAAAAAAAAD7////AAABAAAAAAD8////AAABAAAAAAD9////AAABAAAAAAD+////AAACAAAAAAD6//7/AAABAAgAAAA=")
+tile_set = ExtResource("1_glv2v")
